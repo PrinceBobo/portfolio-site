@@ -6,27 +6,47 @@ import { Send, CheckCircle } from 'lucide-react';
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
+    setError('');
 
-    // Simulate form submission
-    setTimeout(() => {
+    const form = e.currentTarget;
+    const data = {
+      name: (form.elements.namedItem('name') as HTMLInputElement).value,
+      email: (form.elements.namedItem('email') as HTMLInputElement).value,
+      subject: (form.elements.namedItem('subject') as HTMLInputElement).value,
+      message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
+    };
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) throw new Error('Failed to send');
+
       setSubmitted(true);
-      setLoading(false);
+      form.reset();
       setTimeout(() => setSubmitted(false), 5000);
-    }, 1000);
+    } catch {
+      setError('Something went wrong. Please try emailing directly.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-semibold text-white mb-2">
-            Name
-          </label>
+          <label className="block text-sm font-semibold text-white mb-2">Name</label>
           <input
+            name="name"
             type="text"
             required
             className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all"
@@ -35,10 +55,9 @@ export default function ContactForm() {
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-white mb-2">
-            Email
-          </label>
+          <label className="block text-sm font-semibold text-white mb-2">Email</label>
           <input
+            name="email"
             type="email"
             required
             className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all"
@@ -48,10 +67,9 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-semibold text-white mb-2">
-          Subject
-        </label>
+        <label className="block text-sm font-semibold text-white mb-2">Subject</label>
         <input
+          name="subject"
           type="text"
           required
           className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all"
@@ -60,16 +78,19 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-semibold text-white mb-2">
-          Message
-        </label>
+        <label className="block text-sm font-semibold text-white mb-2">Message</label>
         <textarea
+          name="message"
           required
           rows={5}
           className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all resize-none"
           placeholder="Your message..."
         />
       </div>
+
+      {error && (
+        <p className="text-red-400 text-sm text-center">{error}</p>
+      )}
 
       <button
         type="submit"

@@ -46,7 +46,7 @@ export default function Contact() {
           </div>
 
           {/* Contact Form */}
-          <div className="glass-effect p-12 border border-white/10">
+          <div id="form" className="glass-effect p-12 border border-white/10">
             <h2 className="text-3xl font-bold text-white mb-8">Send me a message</h2>
             <ContactForm />
           </div>

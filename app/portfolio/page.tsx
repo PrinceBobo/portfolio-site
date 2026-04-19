@@ -1,59 +1,76 @@
+import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
 
+type Project = {
+  id: number;
+  title: string;
+  description: string;
+  tags: string[];
+  image: string;
+  thumbnail?: string;
+  status?: string;
+  link: string;
+  github: string;
+};
+
 export default function Portfolio() {
-  const projects = [
+  const projects: Project[] = [
     {
       id: 1,
-      title: 'AI-Powered Analytics Platform',
-      description: 'Enterprise-grade analytics platform leveraging machine learning for predictive insights and real-time data visualization.',
-      tags: ['React', 'Python', 'TensorFlow', 'AWS', 'PostgreSQL'],
+      title: 'Legal Document Generator',
+      description: 'SaaS tool for drafting standard legal agreements through an AI-guided chatbot. Supports 12 document templates with real-time live preview and download as PDF, DOCX, or Markdown.',
+      tags: ['Next.js 14', 'Express.js', 'MongoDB', 'Google OAuth', 'OpenRouter', 'Docker', 'SSE Streaming'],
       image: 'bg-gradient-to-br from-blue-600 to-cyan-500',
+      thumbnail: '/Prelegal.png',
       status: 'Featured',
-      link: '#',
-      github: '#',
+      link: 'https://prelegal-6r8o.onrender.com/',
+      github: 'https://github.com/PrinceBobo/prelegal',
     },
     {
       id: 2,
-      title: 'Next.js E-Commerce Platform',
-      description: 'Full-featured e-commerce solution with AI-powered product recommendations, built with Next.js and headless CMS integration.',
-      tags: ['Next.js', 'TypeScript', 'Stripe', 'MongoDB', 'AI'],
+      title: 'AI Kanban Board',
+      description: 'Full-stack project management app with an AI chat assistant that reads the board and directly updates it in response to natural language instructions. Multi-board Kanban with priority, labels, due dates, and checklists.',
+      tags: ['Next.js', 'Python FastAPI', 'SQLite', 'OpenRouter', 'Docker', 'SSE Streaming'],
       image: 'bg-gradient-to-br from-purple-600 to-pink-500',
+      thumbnail: '/Kanban.png',
       status: 'Featured',
-      link: '#',
-      github: '#',
+      link: 'https://ai-kanban-board.onrender.com/',
+      github: 'https://github.com/PrinceBobo/AI-Kanban-Board',
     },
     {
       id: 3,
-      title: 'Real-Time Collaboration Tool',
-      description: 'WebSocket-based collaborative editor with AI suggestions, version control, and team management features.',
-      tags: ['Node.js', 'WebSockets', 'React', 'Redis', 'OpenAI'],
+      title: 'Portfolio Website',
+      description: 'Personal portfolio website with an AI Digital Twin chatbot that answers questions about my background, projects, and experience.',
+      tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'OpenRouter', 'Vercel'],
       image: 'bg-gradient-to-br from-green-600 to-teal-500',
-      link: '#',
+      link: 'https://portfolio-website-omega-peach-17.vercel.app/',
       github: '#',
     },
     {
       id: 4,
-      title: 'Mobile Finance App',
-      description: 'Cross-platform mobile application for personal finance management with ML-powered budgeting and investment insights.',
-      tags: ['React Native', 'JavaScript', 'Firebase', 'Machine Learning'],
+      title: 'MetaMall — VR E-Commerce Metaverse',
+      description: 'Multiplayer VR and mobile E-Commerce Metaverse where users spawn in a 3D mall, try clothing on in-game avatars, and purchase real-world products from brand partners.',
+      tags: ['Unity', 'C#', 'VR', 'Multiplayer', 'Mobile'],
       image: 'bg-gradient-to-br from-orange-600 to-red-500',
       link: '#',
       github: '#',
     },
     {
       id: 5,
-      title: 'SaaS Dashboard',
-      description: 'Custom dashboard for a B2B SaaS platform with real-time metrics, advanced filtering, and data export capabilities.',
-      tags: ['Vue.js', 'Node.js', 'GraphQL', 'D3.js'],
+      title: 'Hospital Ultrasound Waiting Room Simulation',
+      description: 'In-depth analysis of Radiology and OPD operations at a local hospital, focused on reducing patient waiting times. Built Process Flow ER Diagrams and a simulation model optimized on real variables like doctor availability.',
+      tags: ['Operations Research', 'Process Modelling', 'Simulation', 'Data Analysis'],
       image: 'bg-gradient-to-br from-indigo-600 to-purple-500',
-      link: '#',
+      thumbnail: '/ShifaProjectThumbnail.png',
+      status: 'Featured',
+      link: 'https://shifa-mcp-simulation-pruf.vercel.app/',
       github: '#',
     },
     {
       id: 6,
-      title: 'Open Source CLI Tool',
-      description: 'Developer-friendly CLI tool for automating deployment workflows with templates and multi-environment support.',
-      tags: ['TypeScript', 'Node.js', 'Open Source'],
+      title: 'Consumer Analytics — EV Bikes',
+      description: 'Exploratory and confirmatory consumer research using interviews, focus groups, and questionnaires. Python-powered cluster analysis to profile segments and form a positioning strategy for an EV bike brand.',
+      tags: ['Python', 'Data Analysis', 'Consumer Research', 'Clustering'],
       image: 'bg-gradient-to-br from-slate-600 to-gray-500',
       link: '#',
       github: '#',
@@ -67,7 +84,7 @@ export default function Portfolio() {
         <div className="container-custom">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 gradient-text">Portfolio</h1>
           <p className="text-lg text-gray-300 max-w-2xl">
-            Showcasing a selection of projects I've built, led, and contributed to. Each demonstrates my commitment to quality, innovation, and solving real-world problems.
+            A selection of projects built using AI-assisted and agentic engineering workflows. Each demonstrates rapid delivery, full-stack architecture, and real-world problem solving.
           </p>
         </div>
       </section>
@@ -87,7 +104,15 @@ export default function Portfolio() {
                 >
                   {/* Project Image */}
                   <div className="relative h-64 overflow-hidden bg-gradient-to-br from-slate-800 to-slate-900">
-                    <div className={`absolute inset-0 ${project.image} opacity-40 group-hover:opacity-60 transition-opacity duration-300`} />
+                    {project.thumbnail ? (
+                      <img
+                        src={project.thumbnail}
+                        alt={project.title}
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    ) : (
+                      <div className={`absolute inset-0 ${project.image} opacity-40 group-hover:opacity-60 transition-opacity duration-300`} />
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                   </div>
 
@@ -123,13 +148,15 @@ export default function Portfolio() {
                         View Project
                         <ExternalLink className="w-4 h-4" />
                       </a>
-                      <a
-                        href={project.github}
-                        className="flex items-center gap-2 text-gray-400 hover:text-cyan-400 transition-colors"
-                      >
-                        GitHub
-                        <ExternalLink className="w-4 h-4" />
-                      </a>
+                      {project.github !== '#' && (
+                        <a
+                          href={project.github}
+                          className="flex items-center gap-2 text-gray-400 hover:text-cyan-400 transition-colors"
+                        >
+                          GitHub
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -153,7 +180,15 @@ export default function Portfolio() {
                 >
                   {/* Project Header */}
                   <div className="mb-4">
-                    <div className={`w-12 h-12 rounded-lg ${project.image} opacity-30 mb-4`} />
+                    {project.thumbnail ? (
+                      <img
+                        src={project.thumbnail}
+                        alt={project.title}
+                        className="w-full h-32 object-cover rounded-lg mb-4 opacity-90"
+                      />
+                    ) : (
+                      <div className={`w-12 h-12 rounded-lg ${project.image} opacity-30 mb-4`} />
+                    )}
                     <h3 className="text-xl font-bold text-white">{project.title}</h3>
                   </div>
 
@@ -181,20 +216,17 @@ export default function Portfolio() {
 
                   {/* Links */}
                   <div className="flex gap-4 pt-4 border-t border-white/10">
-                    <a
-                      href={project.link}
-                      className="text-cyan-400 text-sm hover:text-cyan-300 transition-colors inline-flex items-center gap-1"
-                    >
-                      View
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
-                    <a
-                      href={project.github}
-                      className="text-gray-400 text-sm hover:text-cyan-400 transition-colors inline-flex items-center gap-1"
-                    >
-                      Code
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
+                    {project.link !== '#' && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-cyan-400 text-sm hover:text-cyan-300 transition-colors inline-flex items-center gap-1"
+                      >
+                        View
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    )}
                   </div>
                 </div>
               ))}
@@ -210,18 +242,18 @@ export default function Portfolio() {
 
             <div className="grid md:grid-cols-3 gap-8 mb-12">
               <div className="glass-effect p-8 border border-white/10 text-center">
-                <div className="text-3xl font-bold text-cyan-400 mb-2">10+</div>
-                <p className="text-gray-400">Game Projects</p>
-              </div>
-
-              <div className="glass-effect p-8 border border-white/10 text-center">
-                <div className="text-3xl font-bold text-cyan-400 mb-2">Unity</div>
-                <p className="text-gray-400">Expert Level</p>
-              </div>
-
-              <div className="glass-effect p-8 border border-white/10 text-center">
-                <div className="text-3xl font-bold text-cyan-400 mb-2">4+</div>
+                <div className="text-3xl font-bold text-cyan-400 mb-2">3+</div>
                 <p className="text-gray-400">Years Experience</p>
+              </div>
+
+              <div className="glass-effect p-8 border border-white/10 text-center">
+                <div className="text-3xl font-bold text-cyan-400 mb-2">AI</div>
+                <p className="text-gray-400">Agentic Engineering</p>
+              </div>
+
+              <div className="glass-effect p-8 border border-white/10 text-center">
+                <div className="text-3xl font-bold text-cyan-400 mb-2">Live</div>
+                <p className="text-gray-400">Deployed Apps</p>
               </div>
             </div>
 
@@ -231,9 +263,9 @@ export default function Portfolio() {
                 I'm always interested in discussing new ventures, collaborations, and opportunities that push the boundaries of what's possible.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="mailto:usmanfrasu@gmail.com" className="btn-primary">
+                <Link href="/contact#form" className="btn-primary">
                   Start a Project
-                </a>
+                </Link>
                 <a href="/about" className="btn-secondary">
                   Learn More About Me
                 </a>

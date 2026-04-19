@@ -24,12 +24,12 @@ export default function Home() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight slide-in-left">
               <span className="gradient-text">Muhammad Usman</span>
               <br />
-              <span className="text-white">Game Developer &amp; Software Engineer</span>
+              <span className="text-white">AI Engineer &amp; Software Developer</span>
             </h1>
 
             {/* Subheading */}
             <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl leading-relaxed slide-in-right" style={{ animationDelay: '0.2s' }}>
-              I build immersive gaming experiences using Unity and create intelligent software solutions. Specializing in game development, software engineering, and AI-driven applications. Passionate about crafting innovative digital experiences that matter.
+              Software Engineer with 3+ years of experience, specialized in AI-assisted development and agentic engineering. I build full-stack applications using modern AI coding workflows — multi-agent systems, context engineering, and automated development pipelines with Claude Code, Cursor, and GitHub Copilot.
             </p>
 
             {/* CTA Buttons */}
@@ -38,24 +38,24 @@ export default function Home() {
                 Explore My Work
                 <ArrowRight className="w-5 h-5" />
               </Link>
-              <a href="#contact" className="btn-secondary">
+              <Link href="/contact#form" className="btn-secondary">
                 Get in Touch
-              </a>
+              </Link>
             </div>
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4 md:gap-8 pt-8 border-t border-white/10">
               <div>
-                <div className="text-3xl md:text-4xl font-bold text-cyan-400 mb-2">4+</div>
+                <div className="text-3xl md:text-4xl font-bold text-cyan-400 mb-2">3+</div>
                 <div className="text-sm md:text-base text-gray-400">Years Experience</div>
               </div>
               <div>
-                <div className="text-3xl md:text-4xl font-bold text-cyan-400 mb-2">10+</div>
-                <div className="text-sm md:text-base text-gray-400">Game Projects</div>
+                <div className="text-3xl md:text-4xl font-bold text-cyan-400 mb-2">AI</div>
+                <div className="text-sm md:text-base text-gray-400">Agentic Engineering</div>
               </div>
               <div>
-                <div className="text-3xl md:text-4xl font-bold text-cyan-400 mb-2">Unity</div>
-                <div className="text-sm md:text-base text-gray-400">Expert Level</div>
+                <div className="text-3xl md:text-4xl font-bold text-cyan-400 mb-2">Full</div>
+                <div className="text-sm md:text-base text-gray-400">Stack + AI Apps</div>
               </div>
             </div>
           </div>
@@ -80,24 +80,24 @@ export default function Home() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                icon: Code,
-                title: 'Game Development',
-                description: 'Unity game engine, gameplay mechanics, and immersive interactive experiences.',
-              },
-              {
                 icon: Brain,
-                title: 'Software Engineering',
-                description: 'Scalable architectures, clean code practices, and maintainable systems.',
-              },
-              {
-                icon: Lightbulb,
-                title: 'AI & Agents',
-                description: 'AI coding, agentic systems, and intelligent problem-solving solutions.',
+                title: 'AI Engineering',
+                description: 'Building full-stack applications with Claude Code, Cursor, and GitHub Copilot using modern AI coding workflows.',
               },
               {
                 icon: Zap,
-                title: 'Problem Solving',
-                description: 'Complex challenges solved with innovative and creative approaches.',
+                title: 'Agentic Engineering',
+                description: 'Designing multi-agent systems, sub-agents, hooks, and automated development pipelines.',
+              },
+              {
+                icon: Lightbulb,
+                title: 'Vibe Engineering',
+                description: 'Rapid prototyping and AI-driven development for fast iteration and reliable delivery.',
+              },
+              {
+                icon: Code,
+                title: 'Full-Stack Development',
+                description: 'Next.js, Python FastAPI, Express.js, Docker — end-to-end scalable application delivery.',
               },
             ].map((item, index) => (
               <div
@@ -121,10 +121,10 @@ export default function Home() {
             <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
               Let's build something extraordinary together. I'm always interested in hearing about new projects and opportunities.
             </p>
-            <a href="mailto:usman@example.com" className="btn-primary mx-auto">
+            <Link href="/contact#form" className="btn-primary mx-auto">
               Start a Conversation
               <ArrowRight className="w-5 h-5" />
-            </a>
+            </Link>
           </div>
         </div>
       </section>
