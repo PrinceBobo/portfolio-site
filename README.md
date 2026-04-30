@@ -4,7 +4,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Live demo
 
-https://portfolio-website-omega-peach-17.vercel.app/
+https://muhammad-usman-portfolio-site.vercel.app/ 
 
 ## Getting Started
 
